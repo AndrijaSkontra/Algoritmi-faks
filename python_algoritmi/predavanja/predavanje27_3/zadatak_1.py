@@ -75,7 +75,7 @@ def sort_swap(lst: typing.List) -> typing.List:
     return lst
 
 
-def sort_swap_ulazno(lst: typing.List) -> typing.List:
+def sort_swap_uzlazno(lst: typing.List) -> typing.List:
     k = 0
     while k < len(lst) - 1:
         maxi, index = find_min_idx(lst[k:])
@@ -105,7 +105,7 @@ def sorts (lst: typing.List, how: str = "asc"):
     if how == "desc":
         sort_swap(lst)
     else:
-        sort_swap_ulazno(lst)
+        sort_swap_uzlazno(lst)
 
 
 if __name__ == '__main__':
@@ -116,7 +116,7 @@ if __name__ == '__main__':
     # lst = swap_two(0, index, lst)
     print(lst)
     print(elapsed_time(sort_swap, lst))
-    sort_swap_ulazno(lst)
+    sort_swap_uzlazno(lst)
     lst2 = generate_random_list(5)
     print(f"-----------\n{lst2}")
     print(sorts(lst2, "desc"))
