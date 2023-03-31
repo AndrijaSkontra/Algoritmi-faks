@@ -1,11 +1,12 @@
 from typing import *
-from timeit import default_timer as timer
-from predavanja.predavanje27_3.zadatak_1 import *
+from vjezbe.vjezbe1.zadatak_1_and_2 import *
+
 
 def sorts_simple_cycling(lst: List, order: str = "desc") -> List:
     """
     Function that sorts list using simple cycling
     :param lst: unsorted list
+    :param order: sortaj "desc" ili "asc"
     :return: sorted list
     """
 
@@ -28,33 +29,31 @@ def sorts_simple_cycling(lst: List, order: str = "desc") -> List:
     return lst
 
 
-def iterate_dict(dict: Dict) -> Dict:
-    for key, value in dict.items():
+def iterate_dict(dicti: Dict):
+    for key, value in dicti.items():
         print(f"Key = {key} <-> Value = {value}")
 
-def sorts_time(lst: List, alg: Callable) -> float:
-    startTimer = timer()
-    alg(lst)
-    endTimer = timer()
 
-    return endTimer - startTimer
+def sorts_time(lst: List, alg: Callable) -> float:
+    start_timer = timer()
+    alg(lst)
+    end_timer = timer()
+
+    return end_timer - start_timer
 
 
 if __name__ == '__main__':
-    lst = generate_random_list(5000)
-    print(lst)
-    sorts_simple_cycling(lst, "desc")
-    sorts_simple_cycling(lst, "asc")
+    lista = generate_random_list(500)
+    # print(lista)
+    # sorts_simple_cycling(lista, "desc")
+    # sorts_simple_cycling(lista, "asc")
 
-    dicty = {"a": 100, "b": 200, "c": [1, 2, 3]}
-    iterate_dict(dicty)
+    # dicty = {"a": 100, "b": 200, "c": [1, 2, 3]}
+    # iterate_dict(dicty)
 
-    npr = dicty["b"] # dohvacanje value od b
-    print(npr)
-    print(sorts_time(lst, sorts_simple_cycling))
-    print(elapsed_time(sort_swap, lst))
-
-
-
-
-
+    # npr = dicty["b"] # dohvacanje value od b
+    # print(npr)
+    print("SORT BY PUSHING VALUES:\n")
+    print(sorts_time(lista, sorts_simple_cycling))
+    print("\nSORT BY SWAPING:\n")
+    print(elapsed_time(sort_swap, lista))

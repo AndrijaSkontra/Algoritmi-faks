@@ -1,5 +1,3 @@
-from typing import *
-
 def simple_func(a, b = 3):
     print(a)
     print(b)

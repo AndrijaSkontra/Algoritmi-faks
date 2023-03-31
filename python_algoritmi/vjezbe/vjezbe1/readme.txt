@@ -1,0 +1,1 @@
+Zadatci iz vjezbe 1 algoritmi u python-u, rijeseni na satu.

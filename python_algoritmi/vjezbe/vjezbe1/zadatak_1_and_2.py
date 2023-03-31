@@ -100,8 +100,9 @@ def elapsed_time(alg: typing.Callable, lst: typing.List) -> float:  # pozivamo f
     end = timer()
     return end - start
 
-def sorts (lst: typing.List, how: str = "asc"):
-    assert how in ["desc", "asc"] #nareduje da mora biti asc ili desc
+
+def sorts(lst: typing.List, how: str = "asc"):
+    assert how in ["desc", "asc"]  # nareduje da mora biti asc ili desc
     if how == "desc":
         sort_swap(lst)
     else:
@@ -109,14 +110,14 @@ def sorts (lst: typing.List, how: str = "asc"):
 
 
 if __name__ == '__main__':
-    lst = generate_random_list(5)
-    # print(lst)
-    # mx, index = find_max_idx(lst)
+    primjer_lst = generate_random_list(5)
+    # print(primjer_lst)
+    # mx, index = find_max_idx(primjer_lst)
     # print(f"max is {mx}\nhis index is: {index}")
-    # lst = swap_two(0, index, lst)
-    print(lst)
-    print(elapsed_time(sort_swap, lst))
-    sort_swap_uzlazno(lst)
+    # primjer_lst = swap_two(0, index, primjer_lst)
+    print(primjer_lst)
+    print(elapsed_time(sort_swap, primjer_lst))
+    sort_swap_uzlazno(primjer_lst)
     lst2 = generate_random_list(5)
     print(f"-----------\n{lst2}")
     print(sorts(lst2, "desc"))
