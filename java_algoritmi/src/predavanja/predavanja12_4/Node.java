@@ -4,7 +4,6 @@ public class Node <E>{
 
     private E element;
     private Node<E> next;
-    private Node<E> before;
 
     public Node(E element, Node next){
         this.element = element;
