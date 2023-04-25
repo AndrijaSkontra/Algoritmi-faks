@@ -1,12 +1,14 @@
-package predavanja.predavanja12_4;
+package vjezbe.vjezbe3.singlelinkedlist;
 
-public class SLL_Concrete <E> implements  SLL<E>{
+import vjezbe.vjezbe3.LLI;
 
-    private Node<E> head;
-    private Node<E> tail;
+public class SingleLinkedList <E> implements LLI<E> {
+
+    private NodeSLL<E> head;
+    private NodeSLL<E> tail;
     private int size;
 
-    public SLL_Concrete(){
+    public SingleLinkedList(){
         this.head = null;
         this.tail = null;
         this.size = 0;
@@ -24,8 +26,8 @@ public class SLL_Concrete <E> implements  SLL<E>{
     @Override
     public void addFirst(E element) {
 
-        Node<E> newNode = new Node<>(element, head);
-        this.head = newNode;
+        NodeSLL<E> newNodeSLL = new NodeSLL<>(element, head);
+        this.head = newNodeSLL;
         if (this.isEmpty()){
             this.tail = this.head;
         }
@@ -38,9 +40,9 @@ public class SLL_Concrete <E> implements  SLL<E>{
         if (this.isEmpty()){
             addFirst(element);
         } else{
-            Node newNode = new Node(element, null);
-            tail.setNext(newNode);
-            tail = newNode;
+            NodeSLL newNodeSLL = new NodeSLL(element, null);
+            tail.setNext(newNodeSLL);
+            tail = newNodeSLL;
         }
         this.size ++;
 
@@ -77,7 +79,7 @@ public class SLL_Concrete <E> implements  SLL<E>{
             this.size --;
         } else {
             element = this.tail.getElement();
-            Node<E> temp = this.head;
+            NodeSLL<E> temp = this.head;
             for (int i = 0; i < size - 2; i++){
                 temp = temp.getNext();
             }
@@ -95,11 +97,10 @@ public class SLL_Concrete <E> implements  SLL<E>{
         if (isEmpty()){
             System.out.println("The list is empty, no elements to search");
         } else{
-            Node<E> temp = this.head;
+            NodeSLL<E> temp = this.head;
             while(!contains && !flag){
 
                 if (element.equals(temp.getElement())){
-                    System.out.println("Contains element in list!");
                     contains = true;
                     flag = true;
                 }
@@ -125,16 +126,60 @@ public class SLL_Concrete <E> implements  SLL<E>{
             addLast(element);
             size++;
         } else {
-            Node<E> newNode = new Node<>(element, null);
-            Node<E> temp = head;
+            NodeSLL<E> newNodeSLL = new NodeSLL<>(element, null);
+            NodeSLL<E> temp = head;
             for (int i = 0; i < position-1; i++){
                 temp = temp.getNext();
             }
-            newNode.setNext(temp.getNext());
-            temp.setNext(newNode);
+            newNodeSLL.setNext(temp.getNext());
+            temp.setNext(newNodeSLL);
             System.out.println("added at " + position);
             size ++;
         }
+    }
+
+    @Override
+    public void clear() {
+        head = null;
+        tail = null;
+        size = 0;
+    }
+
+    @Override
+    public E getFirst() {
+        return head.getElement();
+    }
+
+    @Override
+    public E getLast() {
+        return tail.getElement();
+    }
+
+    @Override
+    public E remove(int index) {
+        E element = null;
+        if (isEmpty()) {
+            System.out.println("this list is empty you cant remove!");
+        } else if (size == 1 || index == 0) {
+            element = removeFirst();
+
+        } else if (index == size - 1) {
+            element = removeLast();
+        } else {
+            NodeSLL<E> temp1 = head;
+            NodeSLL<E> temp2 = head;
+            for (int i = 0; i < index - 1; i++) {
+                temp1 = temp1.getNext();
+            }
+            for (int i = 0; i < index; i++) {
+                temp2 = temp2.getNext();
+            }
+            temp1.setNext(temp2.getNext());
+            temp2.setNext(null);
+            element = temp2.getElement();
+            size --;
+        }
+        return element;
     }
 
     @Override

@@ -1,12 +1,12 @@
-package double_linked_list;
+package vjezbe.vjezbe3.doublelinkedlist;
 
-public class NodeDoubleLink <E> {
+public class NodeDLL <E> {
 
     private E element;
-    private NodeDoubleLink<E> next;
-    private NodeDoubleLink<E> before;
+    private NodeDLL<E> next;
+    private NodeDLL<E> before;
 
-    public NodeDoubleLink(E element, NodeDoubleLink<E> next, NodeDoubleLink<E> before) {
+    public NodeDLL(E element, NodeDLL<E> next, NodeDLL<E> before) {
         this.element = element;
         this.next = next;
         this.before = before;
@@ -17,19 +17,19 @@ public class NodeDoubleLink <E> {
         return element;
     }
 
-    public NodeDoubleLink<E> getNext() {
+    public NodeDLL<E> getNext() {
         return next;
     }
 
-    public void setNext(NodeDoubleLink<E> next) {
+    public void setNext(NodeDLL<E> next) {
         this.next = next;
     }
 
-    public NodeDoubleLink<E> getBefore() {
+    public NodeDLL<E> getBefore() {
         return before;
     }
 
-    public void setBefore(NodeDoubleLink<E> before) {
+    public void setBefore(NodeDLL<E> before) {
         this.before = before;
     }
 

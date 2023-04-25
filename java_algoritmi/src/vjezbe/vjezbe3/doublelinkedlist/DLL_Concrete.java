@@ -1,13 +1,12 @@
-package double_linked_list;
+package vjezbe.vjezbe3.doublelinkedlist;
 
-import predavanja.predavanja12_4.Node;
-import predavanja.predavanja12_4.SLL;
+import vjezbe.vjezbe3.LLI;
 
-public class DoubleLinkedList_Concrete <E> implements SLL <E> {
+public class DLL_Concrete <E> implements LLI<E> {
 
-    private NodeDoubleLink<E> head = null;
-    private NodeDoubleLink<E> tail = null;
-    private int size;
+    private NodeDLL<E> head = null;
+    private NodeDLL<E> tail = null;
+    private int size = 0;
 
     @Override
     public int size() {
@@ -16,34 +15,34 @@ public class DoubleLinkedList_Concrete <E> implements SLL <E> {
 
     @Override
     public boolean isEmpty() {
-        boolean flag;
-        if (this.size == 0) {
-            flag = true;
-        } else {
-            flag = false;
-        }
-        return flag;
+        return size==0;
     }
 
     @Override
     public void addFirst(E element) {
-        NodeDoubleLink<E> newNode = new NodeDoubleLink<>(element, head, null);
-        this.head = newNode;
-        if (this.size == 0) {
-            this.tail = newNode;
+        if (isEmpty()) {
+            NodeDLL<E> newNode = new NodeDLL<>(element, null, null);
+            this.head = newNode;
+            tail = newNode;
+        } else {
+            NodeDLL<E> newNode = new NodeDLL<>(element, head, null);
+            head.setBefore(newNode);
+            head = newNode;
         }
         this.size ++;
     }
 
     @Override
     public void addLast(E element) {
-        NodeDoubleLink<E> newNode = new NodeDoubleLink<>(element, null, tail);
-        tail.setNext(newNode);
-        tail = newNode;
-        if (this.size == 0) {
-            this.head = newNode;
+        if (isEmpty()) {
+            addFirst(element);
+        } else {
+            NodeDLL<E> newNode = new NodeDLL<>(element, null, tail);
+            tail.setNext(newNode);
+            tail = newNode;
+            this.size ++;
         }
-        this.size ++;
+
     }
 
     @Override
@@ -91,7 +90,7 @@ public class DoubleLinkedList_Concrete <E> implements SLL <E> {
         if(isEmpty()){
             System.out.println("list is empty, nothing to search.");
         } else {
-            NodeDoubleLink<E> temp = this.head;
+            NodeDLL<E> temp = this.head;
             while(!contains && !flag) {
                 if (element.equals(temp.getElement())){
                     System.out.println("Contains element!");
@@ -112,26 +111,64 @@ public class DoubleLinkedList_Concrete <E> implements SLL <E> {
         if (position < 0 || position > this.size){
             System.out.println("Index out of bounds");
             throw new IndexOutOfBoundsException();
-        } else if (this.size == 0 && position == 1){
+        } else if (position == 0){
             addFirst(element);
         } else if (position == this.size){
             addLast(element);
         } else {
-            NodeDoubleLink<E> temp1 = this.head;
-            NodeDoubleLink<E> temp2 = this.tail;
-            for (int i = 0; i < position - 1; i++){
-                temp1 = temp1.getNext();
+            NodeDLL<E> temp = this.head;
+
+            for (int i = 0; i < position - 1; i++) {
+                temp = temp.getNext();
             }
-            for (int i = this.size - 1; i > position; i--){
-                temp2 = temp2.getBefore();
-            }
-            NodeDoubleLink<E> newNode = new NodeDoubleLink<>(element, temp2, temp1);
-            temp1.setNext(newNode);
-            temp2.setBefore(newNode);
-            System.out.println();
+
+            NodeDLL<E> newNode = new NodeDLL<>(element, temp.getNext(), temp);
+            temp.getNext().setBefore(newNode);
+            temp.setNext(newNode);
             this.size++;
         }
 
+    }
+
+    @Override
+    public void clear() {
+        head = null;
+        tail = null;
+        size = 0;
+    }
+
+    @Override
+    public E getFirst() {
+        return head.getElement();
+    }
+
+    @Override
+    public E getLast() {
+        return tail.getElement();
+    }
+
+    @Override
+    public E remove(int index) {
+        E element = null;
+        if (isEmpty()) {
+            System.out.println("this list is empty you cant remove!");
+        } else if (size == 1 || index == 0) {
+            element = removeFirst();
+
+        } else if (index == size - 1) {
+            element = removeLast();
+        } else {
+            NodeDLL<E> temp = head;
+            for (int i = 0; i < index; i++) {
+                temp = temp.getNext();
+            }
+            temp.getBefore().setNext(temp.getNext());
+            temp.getNext().setBefore(temp.getBefore());
+            temp.setNext(null);
+            element = temp.getElement();
+            size --;
+        }
+        return element;
     }
 
     @Override
