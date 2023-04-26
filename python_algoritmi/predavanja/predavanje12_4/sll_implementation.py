@@ -1,11 +1,11 @@
 class Node:
 
     def __init__(self, element, next_node):
-        self.__element = element # nesto najblize za private __
+        self.__element = element  # nesto najblize za private __
         self.__next = next_node
 
     @property
-    def element(self): # getter u pythonu
+    def element(self):  # getter u pythonu
         return self.__element
 
     @element.setter

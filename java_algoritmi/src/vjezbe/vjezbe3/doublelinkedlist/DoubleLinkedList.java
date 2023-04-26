@@ -2,7 +2,7 @@ package vjezbe.vjezbe3.doublelinkedlist;
 
 import vjezbe.vjezbe3.LLI;
 
-public class DLL_Concrete <E> implements LLI<E> {
+public class DoubleLinkedList<E> implements LLI<E> {
 
     private NodeDLL<E> head = null;
     private NodeDLL<E> tail = null;

@@ -9,8 +9,8 @@ public class CLL<E> implements SLL <E> {
     private int size;
 
     public CLL() {
-        tail = null; // dodaj this. ako ne bude radilo
-        size = 0;
+        this.tail = null;
+        this.size = 0;
         System.out.println("Created an empty list!");
     }
 
@@ -35,7 +35,6 @@ public class CLL<E> implements SLL <E> {
             tail.setNext(newNode);
         }
         size++;
-
     }
 
     @Override

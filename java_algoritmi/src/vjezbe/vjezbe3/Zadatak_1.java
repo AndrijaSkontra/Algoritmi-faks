@@ -1,6 +1,6 @@
 package vjezbe.vjezbe3;
 
-import vjezbe.vjezbe3.doublelinkedlist.DLL_Concrete;
+import vjezbe.vjezbe3.doublelinkedlist.DoubleLinkedList;
 import vjezbe.vjezbe3.doublelinkedlist.NodeDLL;
 import vjezbe.vjezbe3.singlelinkedlist.NodeSLL;
 import vjezbe.vjezbe3.singlelinkedlist.SingleLinkedList;
@@ -32,7 +32,7 @@ public class Zadatak_1 {
         System.out.println(slist);
         // slist.insertAtPosition(2, -123); throws index out of bounds
 
-        Integer elem = slist.remove(1);
+        Integer elem = slist.remove(3);
         System.out.println(slist);
 
         System.out.println("deleted element is: " + elem);
@@ -48,7 +48,7 @@ public class Zadatak_1 {
         NodeDLL<Integer> node2 = new NodeDLL<>(15, null, node1);
         System.out.println(node2);
 
-        DLL_Concrete<Integer> dlist = new DLL_Concrete<>();
+        DoubleLinkedList<Integer> dlist = new DoubleLinkedList<>();
         dlist.addLast(300);
         dlist.addFirst(200);
         dlist.addFirst(100);
@@ -58,7 +58,7 @@ public class Zadatak_1 {
         dlist.insertAtPosition(500, 4);
         System.out.println(dlist);
 
-        Integer elem = dlist.remove(2);
+        Integer elem = dlist.remove(5);
         System.out.println(dlist);
         System.out.println("removed element is: " + elem);
 

@@ -83,6 +83,7 @@ public class SingleLinkedList <E> implements LLI<E> {
             for (int i = 0; i < size - 2; i++){
                 temp = temp.getNext();
             }
+
             temp.setNext(null);
             this.tail = temp;
             this.size --;
@@ -119,9 +120,9 @@ public class SingleLinkedList <E> implements LLI<E> {
         if (position < 0 || position > size + 1){
             System.out.println("Index out of bounds");
             throw new IndexOutOfBoundsException();
-        } else if (size == 0 && position == size + 1) {
+        } else if (size == 0 || position == 0) {
             addFirst(element);
-            size ++;
+            size++;
         } else if (position == size){
             addLast(element);
             size++;
@@ -133,8 +134,7 @@ public class SingleLinkedList <E> implements LLI<E> {
             }
             newNodeSLL.setNext(temp.getNext());
             temp.setNext(newNodeSLL);
-            System.out.println("added at " + position);
-            size ++;
+            size++;
         }
     }
 
@@ -158,12 +158,14 @@ public class SingleLinkedList <E> implements LLI<E> {
     @Override
     public E remove(int index) {
         E element = null;
-        if (isEmpty()) {
+        if (index < 0 || index >= size){
+            System.out.println("index out of bounds");
+        } else if (isEmpty()) {
             System.out.println("this list is empty you cant remove!");
         } else if (size == 1 || index == 0) {
             element = removeFirst();
 
-        } else if (index == size - 1) {
+        } else if (index == this.size - 1) {
             element = removeLast();
         } else {
             NodeSLL<E> temp1 = head;
