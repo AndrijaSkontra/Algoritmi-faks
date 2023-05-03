@@ -110,7 +110,7 @@ public class CircularLinkedList <E> implements LLI<E> { // tail index = 0
 
     @Override
     public E getFirst() {
-        return null;
+        return tail.getNext().getElement();
     }
 
     @Override
