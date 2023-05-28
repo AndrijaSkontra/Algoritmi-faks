@@ -1,6 +1,6 @@
 package predavanja.predavanja10_5;
 
-public class QueueArr<E> implements  ADTQUEUE<E> {
+public class QueueArr<E> implements  ADTQUEUE<E>, Cloneable{
 
     private int front;
     private int capacity;
@@ -90,5 +90,12 @@ public class QueueArr<E> implements  ADTQUEUE<E> {
     @Override
     public boolean isEmpty() {
         return this.size == 0;
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        QueueArr<E> clonedQueue = (QueueArr<E>) super.clone();
+        clonedQueue.queue = queue.clone();
+        return clonedQueue;
     }
 }

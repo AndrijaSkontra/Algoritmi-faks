@@ -3,19 +3,18 @@ package predavanja.predavanja10_5banka;
 public class Customer {
 
     private String name;
-    private int id;
-    private int cntID;
+    private int age;
 
-    public Customer(String name) {
-        this.name = name;
-        this.id = cntID++;
+    public Customer() {
+        this.name = AUXCLS.generateRandomName();
+        this.age = AUXCLS.generateRandomAge();
     }
 
     @Override
     public String toString() {
         return "Customer{" +
                 "name='" + name + '\'' +
-                ", id=" + id +
+                ", age=" + age +
                 '}';
     }
 }
