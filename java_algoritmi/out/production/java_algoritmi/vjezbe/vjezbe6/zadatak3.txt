@@ -1,0 +1,35 @@
+function mergesort(lst)
+    if length(lst) == 1 then
+        return lst
+
+    lstOne = lst[length(lst) // 2:]
+    lstTwo = lst[:length(lst) // 2]
+
+    lstOne = mergesort(lstOne)
+    lstTwo = mergesort(lstTwo)
+
+    return merge(lstOne, lstTwo)
+
+
+function merge(lst_a, lst_b)
+    lst_c = []
+
+    while length(lst_a) > 0 and length(lst_b) > 0 do
+        if lst_a[0] > lst_b[0] then
+            append lst_b[0] to lst_c
+            remove first element from lst_b
+        else
+            append lst_a[0] to lst_c
+            remove first element from lst_a
+
+    while length(lst_a) > 0 do
+        append lst_a[0] to lst_c
+        remove first element from lst_a
+
+    while length(lst_b) > 0 do
+        append lst_b[0] to lst_c
+        remove first element from lst_b
+
+    return lst_c
+
+
